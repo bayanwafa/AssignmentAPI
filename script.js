@@ -1,3 +1,5 @@
+// script.js
+
 // Define my Google Books API key
 const apiKey = 'AIzaSyA2UMP1RxoUW9leh7L5cceRfWITSdhrCxI';
 
@@ -31,8 +33,10 @@ const fetchBookData = async (searchQuery) => {
     }
 }
 
+
 // Function to display book search results
-const displayBookResults = (data, searchQuery) => {
+// Function to update the content of existing elements with new data
+function updateBookResults(data, searchQuery) {
     const mainContainer = document.getElementsByClassName('main-container')[0];
 
     if (!data) {
@@ -40,15 +44,19 @@ const displayBookResults = (data, searchQuery) => {
         return;
     }
 
-    if (mainContainer.childNodes.length > 7) {
+    // Check if there are existing result elements
+    const existingBookDiv = document.getElementsByClassName('results')[0];
+
+    if (existingBookDiv) {
         // Update the existing results if they exist
-        const bookDiv = document.getElementsByClassName('results')[0];
-        bookDiv.childNodes[0].textContent = searchQuery ? searchQuery : '';
-        bookDiv.childNodes[1].textContent = data.items[0].volumeInfo.title;
-        bookDiv.childNodes[2].textContent = data.items[0].volumeInfo.authors ? data.items[0].volumeInfo.authors.join(', ') : 'Unknown';
-        bookDiv.childNodes[3].textContent = data.items[0].volumeInfo.publisher || 'Unknown';
+        // Update the content of existing elements with new data
+        existingBookDiv.childNodes[0].textContent = searchQuery ? searchQuery : '';
+        existingBookDiv.childNodes[1].textContent = data.items[0].volumeInfo.title;
+        existingBookDiv.childNodes[2].textContent = data.items[0].volumeInfo.authors ? data.items[0].volumeInfo.authors.join(', ') : 'Unknown';
+        existingBookDiv.childNodes[3].textContent = data.items[0].volumeInfo.publisher || 'Unknown';
     } else {
         // Create a new div and insert it as a child of the main Container if results don't exist
+        // If there are no existing elements, create and append new ones
         const bookDiv = document.createElement('div');
         const h1Elem = document.createElement('h1');
         const p1Elem = document.createElement('p');
@@ -71,8 +79,8 @@ const displayBookResults = (data, searchQuery) => {
     }
 }
 
-
 // Find the search button and add a click event listener
+// Example usage when the user triggers a new search
 const searchButton = document.getElementById('search-button');
 
 searchButton.addEventListener('click', async (e) => {
@@ -81,16 +89,13 @@ searchButton.addEventListener('click', async (e) => {
     const searchQuery = searchInput.value;
     searchInput.value = '';
 
-
     try {
         // Fetch book data and display results
         const bookData = await fetchBookData(searchQuery);
-        displayBookResults(bookData, searchQuery);
-
+        updateBookResults(bookData, searchQuery);
     } catch (error) {
         // Handle errors and show an alert
         console.error('Error fetching book data: ', error);
         alert('An error occurred while fetching data. Please try again.');
     }
-
 });
