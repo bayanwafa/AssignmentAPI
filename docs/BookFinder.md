@@ -12,9 +12,9 @@ The Book Finder web application allows users to search for books, authors, or pu
 
 ## Usage
 
-1- Open the web application by launching the index.html file in a web browser.
-2- Enter your search query in the search input field.
-3- Click the "Search" button to fetch and display the search results.
+1. Open the web application by launching the index.html file in a web browser.
+2. Enter your search query in the search input field.
+3. Click the "Search" button to fetch and display the search results.
 
 ## Acknowledgments
 
