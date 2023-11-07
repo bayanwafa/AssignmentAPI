@@ -14,7 +14,7 @@ The JavaScript code handles user interactions, including making GET requests to 
 ### GET and POST Requests
 The application makes GET requests to the Google Books API to search for books, authors, and publishers based on user input. 
 
-Book Finder web application that interacts with the Google Books API is implements GET and POST requests and handles errors properly as well. .
+Book Finder web application that interacts with the Google Books API is implements GET and POST requests and handles errors properly as well.
 
 The Google Books API doesn't support PUT and DELETE operations, so we won't be able to use those.
 
@@ -26,5 +26,5 @@ The project is hosted on GitHub.
 
 
 ## Links
-GitHub Repository
-Rendered Website
+- GitHub Repository
+- Rendered Website
